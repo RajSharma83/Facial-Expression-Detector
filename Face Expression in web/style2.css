@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto&display=swap');
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: black;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    transition: background-color 0.8s ease, color 0.8s ease;
+  }
+  body.light-theme {
+    background: white;
+    color: #111;
+  }
+  #starfield {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    display: block;
+    z-index: 0;
+    background: transparent;
+    transition: background-color 0.8s ease;
+  }
+  #container {
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    transition: color 0.8s ease;
+  }
+   a {
+    text-decoration: none;
+    color: #ffffffe7;
+   }
+  #main-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 4rem;
+    color: #ffffff;
+    text-shadow:
+      0 0 5px #00ffff8c,
+      0 0 10px #00ffffb1,
+      0 0 20px #00ffff85,
+      0 0 40px #00ffffa5;
+    animation: slideUpGlow 2.5s ease forwards;
+    opacity: 0;
+    transition: color 0.8s ease, text-shadow 0.8s ease;
+  }
+  body.light-theme #main-text {
+    color: #004d4d;
+    text-shadow:
+      0 0 5px #005757,
+      0 0 10px #006464,
+      0 0 20px #008080,
+      0 0 40px #00a0a0;
+  }
+  #about-text {
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #aaa;
+    opacity: 0;
+    animation: slideUpFade 1.5s ease forwards;
+    animation-delay: 1.8s;
+    transition: color 0.8s ease;
+  }
+  body.light-theme #about-text {
+    color: #555;
+  }
+  #start-btn {
+    margin-top: 8px;
+    padding: 12px 36px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #00ffff;
+    background: transparent;
+    border: 2px solid #00ffff;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    opacity: 0;
+    animation: slideUpFade 1.5s ease forwards;
+    animation-delay: 2.3s;
+  }
+  #start-btn:hover {
+    background-color: #00ffff;
+    color: black;
+  }
+  body.light-theme #start-btn {
+    color: #008080;
+    border-color: #008080;
+  }
+  body.light-theme #start-btn:hover {
+    background-color: #008080;
+    color: white;
+  }
+
+  @keyframes slideUpGlow {
+    0% {
+      opacity: 0;
+      transform: translateY(100vh);
+      text-shadow: 0 0 0px #00ffff;
+    }
+    70% {
+      opacity: 1;
+      transform: translateY(-10px);
+      text-shadow:
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #00ffff;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      text-shadow:
+        0 0 8px #00ffff,
+        0 0 14px #00ffff,
+        0 0 30px #00ffff,
+        0 0 60px #00ffff;
+    }
+  }
+
+  @keyframes slideUpFade {
+    0% {
+      opacity: 0;
+      transform: translateY(100vh);
+    }
+    100% {
+      opacity: 0.8;
+      transform: translateY(0);
+    }
+  }
+  .fade-out {
+    animation: fadeOutAll 1s ease forwards;
+  }
+  @keyframes fadeOutAll {
+    to {
+      opacity: 0;
+      transform: translateY(-30px);
+      pointer-events: none;
+    }
+  }
+  footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #444;
+    font-family: 'Roboto', sans-serif;
+    user-select: none;
+    opacity: 0;
+    animation: footerFadeIn 2s ease forwards;
+    animation-delay: 3.8s;
+    z-index: 12;
+    transition: color 0.8s ease;
+  }
+  body.light-theme footer {
+    color: #888;
+  }
+  @keyframes footerFadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  #theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+    background: transparent;
+    border: 2px solid #00ffff;
+    color: #00ffff;
+    border-radius: 30px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  #theme-toggle:hover {
+    background-color: #00ffff;
+    color: black;
+  }
+  body.light-theme #theme-toggle {
+    border-color: #008080;
+    color: #008080;
+  }
+  body.light-theme #theme-toggle:hover {
+    background-color: #008080;
+    color: white;
+  }
+  #face-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; 
+    pointer-events: none;
+  }
+  .face {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    font-size: 18rem;
+    user-select: none;
+    filter: drop-shadow(0 0 6px rgba(0,0,0,0.15));
+    color: transparent;
+  }
+  body.light-theme #face-background .face {
+    opacity: 0.12;
+  }
+  #face-happy {
+    top: 15%;
+    left: 10%;
+    color: #004d4d;
+  }
+  #face-surprised {
+    top: 25%;
+    right: 12%;
+    color: #006666;
+  }
+  #face-sad {
+    bottom: 15%;
+    left: 40%;
+    color: #005050;
+  }
+@media (max-width: 768px) {
+  #main-text {
+    font-size: 2.5rem;
+  }
+  #about-text {
+    font-size: 1rem;
+  }
+  #start-btn {
+    font-size: 1rem;
+    padding: 10px 20px; 
+  }
+  #container {
+    padding: 0 10px;
+  }
+  #theme-toggle {
+    font-size: 0.9rem; 
+    padding: 6px 12px; 
+  }
+  footer {
+    font-size: 0.8rem; 
+  }
+  .face {
+    font-size: 10rem; 
+  }
+}

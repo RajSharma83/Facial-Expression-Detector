@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Facial Expression Detector</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="face-api.min.js"></script>
+    <script defer src="script.js"></script>
+    <style>
+   #video { display: none;}
+  .slide-out { transform: translateY(-100%); } 
+  .slide-in { display: block; transform: translateY(0); }
+   #container { transition: transform 0.5s ease; }
+  .slide-down {  transform: translateY(100%); }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div id="face-background">
+        <div id="face-happy" class="face" aria-label="Happy face" role="img">😊</div>
+        <div id="face-surprised" class="face" aria-label="Surprised face" role="img">😮</div>
+        <div id="face-sad" class="face" aria-label="Sad face" role="img">😔</div>
+    </div>
+    <div id="container">
+        <h1 id="main-text">Welcome to Facial Expression Detector</h1>
+        <p id="about-text">"Real-Time Facial Expression Detector – Built to detect and analyze<br>
+        emotions like natural, happiness, anger, and surprise right from your webcam.
+        Developed by <a href="https://www.instagram.com/_itz_raj009_/">Raj Sharma</a>."</p>
+        <br><br>
+        <p id="about-text">Press Start Button To Proceed </p>
+        <button id="start-btn">Start</button>
+    </div>
+    <video id="video" width="720" height="560" autoplay muted></video>
+    <div id="expression"></div>
+    <footer>© 2025 Raj Sharma - All rights reserved</footer>
+    <button id="theme-toggle" aria-label="Toggle Theme"> Theme</button>
+    <script>
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  const numStars = 150;
+  const maxStarSize = 1.3;
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+  let isLightTheme = false;
+
+  class Star {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.size = Math.random() * maxStarSize;
+      this.alpha = Math.random();
+      this.decay = 0.005 + Math.random() * 0.02;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+      const starColor = isLightTheme ? 'rgba(0,0,0,' + this.alpha + ')' : 'rgba(255,255,255,' + this.alpha + ')';
+      ctx.fillStyle = starColor;
+      ctx.shadowColor = isLightTheme ? 'black' : 'white';
+      ctx.shadowBlur = 5;
+      ctx.fill();
+    }
+
+    update() {
+      this.alpha -= this.decay;
+      if (this.alpha <= 0) {
+        this.reset();
+        this.alpha = 1;
+      }
+    }
+  }
+  function initStars() {
+    stars = [];
+    for (let i = 0; i < numStars; i++) {
+      stars.push(new Star());
+    }
+  }
+  initStars();
+
+  function animateStars() {
+    ctx.clearRect(0, 0, width, height);
+    stars.forEach(star => {
+      star.draw();
+      star.update();
+    });
+    requestAnimationFrame(animateStars);
+  }
+  animateStars();
+  const startBtn = document.getElementById('start-btn');
+  const container = document.getElementById('container');
+
+  startBtn.addEventListener('click', () => {
+    container.classList.add('fade-out');
+    startBtn.disabled = true;
+  });
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const body = document.body;
+  themeToggleBtn.addEventListener('click', () => {
+    isLightTheme = !isLightTheme;
+    body.classList.toggle('light-theme', isLightTheme);
+  });
+  window.addEventListener('resize', () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    initStars();
+  });
+        document.getElementById('start-btn').addEventListener('click', function() {
+            const container = document.getElementById('container');
+            container.classList.add('slide-out');
+            setTimeout(function() {
+                container.style.display = 'none';
+                const video = document.getElementById('video');
+                video.style.display = 'block';
+                video.classList.add('slide-in');
+                video.classList.remove('slide-down');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
