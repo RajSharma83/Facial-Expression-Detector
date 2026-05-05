@@ -40,11 +40,10 @@ All rights reserved.
 ###  🎭 Expression Detection page
 ![Image Upload](ss/s2.png)
 
-This Face Expression Detector website and all associated content (code, design, images, text) are protected by copyright law.
+## Note : 
+“The image shows a face, but it has been hidden for privacy reasons.”
 
-You MAY NOT:
-
-Copy, reproduce, distribute, or modify any part of this website without explicit written permission from Raj Sharma. Use this work for commercial purposes without authorization. Claim ownership or redistribute this content as your own. You MAY:
+You MAY:
 
 View and study the code and design for learning purposes only. Use this as inspiration with proper credit given. You can ask for the media files ( images,video,icons) used in it For permissions, licensing, or collaborations, please contact:
 
