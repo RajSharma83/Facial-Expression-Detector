@@ -1,0 +1,105 @@
+:root {
+    --background-color: #000000;
+    --star-color: #7afcff;
+    --star-glow-color: #00d8ff;
+    --video-border-color: #0ff;
+}
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: 'Inter', 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#video {
+    position: relative;
+    width: 718px;
+    height: 540px;
+    border-radius: 16px;
+    border: 3px solid var(--video-border-color);
+    box-shadow:
+        0 0 8px var(--video-border-color),
+        0 0 20px var(--video-border-color),
+        0 0 40px var(--video-border-color);
+    animation: glowBorder 3s ease-in-out infinite;
+    z-index: 1;
+    background-color: #111; 
+    overflow: hidden;
+}
+
+@keyframes glowBorder {
+    0%, 100% {
+        border-color: #00e0ff;
+        box-shadow:
+            0 0 8px #00e0ff,
+            0 0 20px #00e0ff,
+            0 0 40px #00e0ff;
+    }
+    50% {
+        border-color: #00aaff;
+        box-shadow:
+            0 0 12px #00aaff,
+            0 0 28px #00aaff,
+            0 0 56px #00aaff;
+    }
+}
+canvas {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+}
+
+ #expression {
+    position: absolute;
+    bottom: 54px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--star-glow-color);
+    font-size: 24px;
+    text-align: center;
+  }
+@media (max-width: 768px) {
+    #video {
+        width: 90%; 
+        height: auto; 
+        max-width: 400px;
+        margin-bottom: 160px;
+    }
+       canvas {
+        width: 90%; 
+        height: 50%;
+        max-width: 400px; 
+        margin-bottom: 160px;
+    }
+    #expression {
+        bottom: 130px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    #video {
+        width: 95%; 
+        height: auto; 
+        max-width: 350px; 
+        margin-bottom: 160px;
+    }
+      canvas {
+        width: 95%; 
+        height: 50%;
+        max-width: 350px;
+        margin-bottom: 160px;
+    }
+    #expression {
+      font-size: 18px;
+        bottom: 190px;
+
+    }
+}
+
